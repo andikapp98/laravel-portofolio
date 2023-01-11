@@ -7,7 +7,9 @@
             <thead>
                 <tr>
                     <th class="col-1">No</th>
-                    <th>Judul</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Akhir</th>
                     <th class="col-3">Aksi</th>
                 </tr>
             </thead>
@@ -15,11 +17,14 @@
                 <?php $i=1 ?>
                 @foreach ($data as $item)    
                 <tr>
-                    <td> {{ $i }} </td>
+                    <td> {{ $i++ }} </td>
                     <td> {{$item->judul}} </td>
+                    <td> {{$item->info1}} </td>
+                    <td> {{$item->tgl_mulai_indo}} </td>
+                    <td> {{$item->tgl_akhir_indo}} </td>
                     <td> 
-                        <a href="{{ route('halaman.edit', $item->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                        <form onsubmit="return confirm('Yakin mau untuk menghapus data ini?')" action="{{route('halaman.destroy', $item->id)}}" class="d-inline" method="POST">
+                        <a href="{{ route('experience.edit', $item->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                        <form onsubmit="return confirm('Yakin mau untuk menghapus data ini?')" action="{{route('experience.destroy', $item->id)}}" class="d-inline" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm btn-danger" type="submit" name="submit">Delete</button>
