@@ -96,7 +96,8 @@ class experienceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = riwayat::where('id', $id)->where('tipe', $this->_tipe)->first();
+        return view('dashboard.experience.edit')->with('data',$data);
     }
 
     /**
@@ -107,8 +108,36 @@ class experienceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $request->validate(
+            [
+                'judul' => 'required',
+                'info1' => 'required',
+                'tgl_mulai' => 'required',
+                'isi' => 'required',
+            ],
+            [
+
+                'judul' => 'Posisi Wajib Diisi',
+                'info' => 'Nama Perusahaan Wajib Diisi',
+                'tgl_mulai' => 'Tanggal Mulai Wajib Diisi',
+                'isi.required' => 'Isian Tulisan Wajib diisi',
+            ]
+            
+            );
+
+            $data = [
+                'judul'=>$request->judul,
+                'info1'=>$request->info1,
+                'tipe'=> $this->_tipe,
+                'tgl_mulai'=>$request->tgl_mulai,
+                'tgl_akhir'=>$request->tgl_akhir,
+                'isi'=>$request->isi
+            ];
+        
+            riwayat::where('id', $id)->where('tipe',$this->_tipe)->update($data);
+
+            return redirect()->route('experience.index')->with('success', 'Berhasil Melakukan Update Data');
     }
 
     /**
