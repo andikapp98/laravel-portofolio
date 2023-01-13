@@ -6,7 +6,7 @@ use App\Models\riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class experienceController extends Controller
+class educationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,12 @@ class experienceController extends Controller
      */
     function __construct()
     {
-        $this->_tipe = 'experience';
+        $this->_tipe = 'education';
     }
     public function index()
     {
         $data = riwayat::where('tipe', $this->_tipe)->orderBy('tgl_akhir','desc')->get();
-        return view('dashboard.experience.index')->with('data', $data);
+        return view('dashboard.education.index')->with('data', $data);
     }
 
     /**
@@ -30,7 +30,7 @@ class experienceController extends Controller
      */
     public function create()
     {
-        return view('dashboard.experience.create');
+        return view('dashboard.education.create');
     }
 
     /**
@@ -44,22 +44,23 @@ class experienceController extends Controller
         //
         Session::flash('judul',$request->judul);
         Session::flash('info1',$request->info1);
+        Session::flash('info2',$request->info2);
+        Session::flash('info3',$request->info3);
         Session::flash('tgl_mulai',$request->tgl_mulai);
         Session::flash('tgl_akhir',$request->tgl_akhir);
-        Session::flash('isi',$request->isi);
         $request->validate(
             [
                 'judul' => 'required',
                 'info1' => 'required',
+                'info2' => 'required',
+                'info3' => 'required',
                 'tgl_mulai' => 'required',
-                'isi' => 'required',
             ],
             [
 
-                'judul' => 'Posisi Wajib Diisi',
-                'info' => 'Nama Perusahaan Wajib Diisi',
-                'tgl_mulai' => 'Tanggal Mulai Wajib Diisi',
-                'isi.required' => 'Isian Tulisan Wajib diisi',
+                'judul' => 'Universitas Wajib Diisi',
+                'info1.requred' => 'Nama Fakultas Wajib Diisi',
+                'tgl_mulai.required' => 'Tanggal Mulai Wajib Diisi',
             ]
             
             );
@@ -67,14 +68,15 @@ class experienceController extends Controller
             $data = [
                 'judul'=>$request->judul,
                 'info1'=>$request->info1,
+                'info2'=>$request->info2,
+                'info3'=>$request->info3,
                 'tipe'=> $this->_tipe,
                 'tgl_mulai'=>$request->tgl_mulai,
                 'tgl_akhir'=>$request->tgl_akhir,
-                'isi'=>$request->isi
             ];
             riwayat::create($data);
 
-            return redirect()->route('experience.index')->with('success', 'Berhasil Menambahkan Data Experience');
+            return redirect()->route('education.index')->with('success', 'Berhasil Menambahkan Data Education');
     }
 
     /**
@@ -97,7 +99,7 @@ class experienceController extends Controller
     public function edit($id)
     {
         $data = riwayat::where('id', $id)->where('tipe', $this->_tipe)->first();
-        return view('dashboard.experience.edit')->with('data',$data);
+        return view('dashboard.Education.edit')->with('data',$data);
     }
 
     /**
@@ -113,15 +115,15 @@ class experienceController extends Controller
             [
                 'judul' => 'required',
                 'info1' => 'required',
+                'info2' => 'required',
+                'info3' => 'required',
                 'tgl_mulai' => 'required',
-                'isi' => 'required',
             ],
             [
 
-                'judul' => 'Posisi Wajib Diisi',
-                'info' => 'Nama Perusahaan Wajib Diisi',
-                'tgl_mulai' => 'Tanggal Mulai Wajib Diisi',
-                'isi.required' => 'Isian Tulisan Wajib diisi',
+                'judul' => 'Universitas Wajib Diisi',
+                'info1.requred' => 'Nama Fakultas Wajib Diisi',
+                'tgl_mulai.required' => 'Tanggal Mulai Wajib Diisi',
             ]
             
             );
@@ -129,15 +131,16 @@ class experienceController extends Controller
             $data = [
                 'judul'=>$request->judul,
                 'info1'=>$request->info1,
+                'info2'=>$request->info2,
+                'info3'=>$request->info3,
                 'tipe'=> $this->_tipe,
                 'tgl_mulai'=>$request->tgl_mulai,
                 'tgl_akhir'=>$request->tgl_akhir,
-                'isi'=>$request->isi
             ];
         
             riwayat::where('id', $id)->where('tipe',$this->_tipe)->update($data);
 
-            return redirect()->route('experience.index')->with('success', 'Berhasil Melakukan Update Data');
+            return redirect()->route('education.index')->with('success', 'Berhasil Melakukan Update Data');
     }
 
     /**
@@ -149,6 +152,6 @@ class experienceController extends Controller
     public function destroy($id)
     {
         riwayat::where('id', $id)->where('tipe',$this->_tipe)->delete();
-        return redirect()->route('experience.index')->with('success','Berhasil Melakukan Detele Data');
+        return redirect()->route('education.index')->with('success','Berhasil Melakukan Detele Data');
     }
 }
