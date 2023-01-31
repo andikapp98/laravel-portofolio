@@ -7,7 +7,8 @@
             <thead>
                 <tr>
                     <th class="col-1">No</th>
-                    <th>Nama Perusahaan</th>
+                    <th>Nama Universitas</th> 
+                    <th>Nama Fakultas</th> 
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Akhir</th>
                     <th class="col-3">Aksi</th>

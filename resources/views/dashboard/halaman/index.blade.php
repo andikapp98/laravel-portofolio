@@ -15,7 +15,7 @@
                 <?php $i=1 ?>
                 @foreach ($data as $item)    
                 <tr>
-                    <td> {{ $i }} </td>
+                    <td> {{ $i++ }} </td>
                     <td> {{$item->judul}} </td>
                     <td> 
                         <a href="{{ route('halaman.edit', $item->id)}}" class="btn btn-sm btn-warning">Edit</a>
