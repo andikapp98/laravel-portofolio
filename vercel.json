@@ -4,14 +4,11 @@
   "builds": [
     {
       "src": "composer.json",
-      "config": {
-        "memory": 512,
-        "outputDirectory": "public"
-      }
+      "use": "@vercel/composer@1.0.0"
     },
     {
-      "src": "public/**",
-      "use": "@vercel/static"
+      "src": "index.php",
+      "use": "@vercel/laravel@9.0.0"
     }
   ],
     "routes": [{
