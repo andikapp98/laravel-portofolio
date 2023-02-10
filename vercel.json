@@ -12,9 +12,9 @@
         "dest": "/api/index.php"
     }],
     "env": {
-        "APP_ENV": "production",
+        "APP_ENV": "local",
         "APP_DEBUG": "false",
-        "APP_URL": "https://andikaportofolio.com",
+        "APP_URL": "http://localhost",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
