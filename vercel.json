@@ -3,10 +3,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "composer.json",
-      "use": "@vercel/composer@1.0.0"
-    },
-    {
       "src": "index.php",
       "use": "@vercel/laravel@9.0.0"
     }
