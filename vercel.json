@@ -4,7 +4,6 @@
   "builds": [
     {
       "src": "composer.json",
-      "use": "@vercel/php@0.4.0",
       "config": {
         "memory": 512,
         "outputDirectory": "public"
